@@ -2,7 +2,7 @@ import React from 'react'
 import CreateReactClass from 'create-react-class'
 import ReactPoint from 'react-point'
 
-export default CalculatorKey = CreateReactClass ({
+class Key extends React.Component {
   render() {
     const { onPress, className, ...props } = this.props
 
@@ -12,4 +12,6 @@ export default CalculatorKey = CreateReactClass ({
       </ReactPoint>
     )
   }
-})
+}
+
+export default Key
