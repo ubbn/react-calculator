@@ -2,6 +2,7 @@ import React from 'react';
 import CreateReactClass from 'create-react-class'
 import Display from './Display'
 import Key from './Key'
+import './styles.css'
 
 const CalculatorOperations = {
   '+': (valueA, valueB) => valueA + valueB,
@@ -35,63 +36,63 @@ class Calculator extends React.Component {
 
   // delete a last char
   clearLastChar() {
-    const { displayValue } = this.state
+    const { valueStr } = this.state
 
     this.setState({
-      displayValue: displayValue.substring(0, displayValue.length - 1) || '0'
+      valueStr: valueStr.substring(0, valueStr.length - 1) || '0'
     })
   }
 
   toggleSign() {
-    const { displayValue } = this.state
+    const { valueStr } = this.state
 
     this.setState({
-      displayValue: displayValue.charAt(0) === '-' ? displayValue.substr(1) : '-' + displayValue
+      valueStr: valueStr.charAt(0) === '-' ? valueStr.substr(1) : '-' + valueStr
     })
   }
 
   inputPercent() {
-    const { displayValue } = this.state
-    const value = parseFloat(displayValue)
+    const { valueStr } = this.state
+    const value = parseFloat(valueStr)
 
     if (value === 0)
       return
 
     this.setState({
-      displayValue: String(value / 100)
+      valueStr: String(value / 100)
     })
   }
 
   inputDot() {
-    const { displayValue } = this.state
+    const { valueStr } = this.state
 
-    if (!(/\./).test(displayValue)) {
+    if (!(/\./).test(valueStr)) {
       this.setState({
-        displayValue: displayValue + '.',
+        valueStr: valueStr + '.',
         waitingForOperand: false
       })
     }
   }
 
   inputDigit(digit) {
-    const { displayValue, waitingForOperand } = this.state
+    const { valueStr, waitingForOperand } = this.state
 
     if (waitingForOperand) {
       this.setState({
-        displayValue: String(digit),
+        valueStr: String(digit),
         waitingForOperand: false
       })
     } else {
       this.setState({
-        displayValue: displayValue === '0' ? String(digit) : displayValue + digit
+        valueStr: valueStr === '0' ? String(digit) : valueStr + digit
       })
     }
   }  
 
   // do calculation
   performOperation(nextOperator) {
-    const { value, displayValue, operator } = this.state
-    const inputValue = parseFloat(displayValue)
+    const { value, valueStr, operator } = this.state
+    const inputValue = parseFloat(valueStr)
 
     if (value == null) {
       this.setState({
@@ -103,7 +104,7 @@ class Calculator extends React.Component {
 
       this.setState({
         value: newValue,
-        displayValue: String(newValue)
+        valueStr: String(newValue)
       })
     }
 
@@ -137,10 +138,10 @@ class Calculator extends React.Component {
     } else if (key === 'Clear') {
       event.preventDefault()
 
-      if (this.state.displayValue !== '0') {
-        this.clearDisplay()
+      if (this.state.valueStr !== '0') {
+        this.clearDisplayValue()
       } else {
-        this.clearAll()
+        this.clear()
       }
     }
   }  
@@ -154,43 +155,42 @@ class Calculator extends React.Component {
   }  
 
   render(){
-    const { displayValue } = this.state    
-    const clearDisplay = displayValue !== '0'
+    const { valueStr } = this.state    
+    const clearDisplay = valueStr !== '0'
     const clearText = clearDisplay ? 'C' : 'AC'
     
     return (
       <div className='calculator'>
-        <Display value={displayValue}>
-          <div className='calculator-keypad'>
-            <div className="input-keys">
-              <div className="function-keys">
-                <Key className="key-clear" onPress={() => clearDisplay ? this.clearDisplayValue() : this.clear()}>{clearText}</Key>
-                <Key className="key-sign" onPress={() => this.toggleSign()}>±</Key>
-                <Key className="key-percent" onPress={() => this.inputPercent()}>%</Key>
-              </div>
-              <div className="digit-keys">
-                <Key className="key-0" onPress={() => this.inputDigit(0)}>0</Key>
-                <Key className="key-dot" onPress={() => this.inputDot()}>●</Key>
-                <Key className="key-1" onPress={() => this.inputDigit(1)}>1</Key>
-                <Key className="key-2" onPress={() => this.inputDigit(2)}>2</Key>
-                <Key className="key-3" onPress={() => this.inputDigit(3)}>3</Key>
-                <Key className="key-4" onPress={() => this.inputDigit(4)}>4</Key>
-                <Key className="key-5" onPress={() => this.inputDigit(5)}>5</Key>
-                <Key className="key-6" onPress={() => this.inputDigit(6)}>6</Key>
-                <Key className="key-7" onPress={() => this.inputDigit(7)}>7</Key>
-                <Key className="key-8" onPress={() => this.inputDigit(8)}>8</Key>
-                <Key className="key-9" onPress={() => this.inputDigit(9)}>9</Key>
-              </div>              
+        <Display value={valueStr} />
+        <div className='calculator-keypad'>
+          <div className="input-keys">
+            <div className="function-keys">
+              <Key className="key-clear" onPress={() => clearDisplay ? this.clearDisplayValue() : this.clear()}>{clearText}</Key>
+              <Key className="key-sign" onPress={() => this.toggleSign()}>±</Key>
+              <Key className="key-percent" onPress={() => this.inputPercent()}>%</Key>
             </div>
-            <div className="operator-keys">
-              <Key className="key-divide" onPress={() => this.performOperation('/')}>÷</Key>
-              <Key className="key-multiply" onPress={() => this.performOperation('*')}>×</Key>
-              <Key className="key-subtract" onPress={() => this.performOperation('-')}>−</Key>
-              <Key className="key-add" onPress={() => this.performOperation('+')}>+</Key>
-              <Key className="key-equals" onPress={() => this.performOperation('=')}>=</Key>
-              </div>
+            <div className="digit-keys">
+              <Key className="key-0" onPress={() => this.inputDigit(0)}>0</Key>
+              <Key className="key-dot" onPress={() => this.inputDot()}>●</Key>
+              <Key className="key-1" onPress={() => this.inputDigit(1)}>1</Key>
+              <Key className="key-2" onPress={() => this.inputDigit(2)}>2</Key>
+              <Key className="key-3" onPress={() => this.inputDigit(3)}>3</Key>
+              <Key className="key-4" onPress={() => this.inputDigit(4)}>4</Key>
+              <Key className="key-5" onPress={() => this.inputDigit(5)}>5</Key>
+              <Key className="key-6" onPress={() => this.inputDigit(6)}>6</Key>
+              <Key className="key-7" onPress={() => this.inputDigit(7)}>7</Key>
+              <Key className="key-8" onPress={() => this.inputDigit(8)}>8</Key>
+              <Key className="key-9" onPress={() => this.inputDigit(9)}>9</Key>
+            </div>              
           </div>
-        </Display>
+          <div className="operator-keys">
+            <Key className="key-divide" onPress={() => this.performOperation('/')}>÷</Key>
+            <Key className="key-multiply" onPress={() => this.performOperation('*')}>×</Key>
+            <Key className="key-subtract" onPress={() => this.performOperation('-')}>−</Key>
+            <Key className="key-add" onPress={() => this.performOperation('+')}>+</Key>
+            <Key className="key-equals" onPress={() => this.performOperation('=')}>=</Key>
+            </div>
+        </div>
       </div>
     )
   }
