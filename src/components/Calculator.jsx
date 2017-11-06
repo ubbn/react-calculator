@@ -1,5 +1,4 @@
 import React from 'react';
-import CreateReactClass from 'create-react-class'
 import Display from './Display'
 import Key from './Key'
 import './styles.css'

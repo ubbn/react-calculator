@@ -1,5 +1,4 @@
 import React from 'react'
-import CreateReactClass from 'create-react-class'
 import ReactPoint from 'react-point'
 
 class Key extends React.Component {

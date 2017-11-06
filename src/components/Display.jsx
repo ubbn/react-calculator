@@ -1,5 +1,4 @@
 import React from 'react'
-import CreateReactClass from 'create-react-class'
 
 class Display extends React.Component {
   render() {
