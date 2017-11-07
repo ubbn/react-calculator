@@ -8,7 +8,14 @@ const CalculatorButton = (props) => {
   className = !!className ? className : 'col-xs-4'
 
   return (
-    <Button bsStyle={style} bsSize={size} className={className}>{label}</Button>
+    <Button 
+      bsStyle={style} 
+      bsSize={size} 
+      className={className}
+      onClick={props.onClick}
+    >
+      {label}
+    </Button>
   );
 }
 

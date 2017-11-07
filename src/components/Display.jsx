@@ -16,9 +16,7 @@ class Display extends React.Component {
       formattedValue += (/[1-9]/).test(match[0]) ? match[1] : match[0]
 
     return (
-      <div {...props} className="calculator-display">
-        {formattedValue}
-      </div>
+      <input className="form-control text-xs-right" disabled type="text" value={formattedValue}/>
     )
   }
 }
