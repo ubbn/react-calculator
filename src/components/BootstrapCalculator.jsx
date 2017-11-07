@@ -61,6 +61,26 @@ class BootstrapCalculator extends React.Component {
     })
   }
 
+  square(){
+    const { valueStr } = this.state
+    const value = parseFloat(valueStr)
+
+    this.setState({
+      valueStr: String(value * value),
+      waitingForOperand: true
+    })    
+  }
+
+  squareRoot(){
+    const { valueStr } = this.state
+    const value = parseFloat(valueStr)
+
+    this.setState({
+      valueStr: String(Math.sqrt(value)),
+      waitingForOperand: true
+    })    
+  }
+
   inputDot() {
     const { valueStr } = this.state
 
@@ -163,8 +183,8 @@ class BootstrapCalculator extends React.Component {
             </div>
             <div className="col-xs-8 p-a-0 m-t-2">
               <CButton label={'CE'} style={'danger'} onClick={() => this.clear()}/>  
-              <CButton label={'sqrt'}/>
-              <CButton label={'x^2'}/>
+              <CButton label={'&#8730;'} onClick={()=> this.squareRoot()}>{3}</CButton>
+              <CButton label={'x<sup>2</sup>'} onClick={()=> this.square()}/>
             </div>
             <div className="col-xs-4 p-r-0 m-t-2">
               <CButton label={'÷'} className={'col-xs-12'} onClick={() => this.performOperation('/')}/>
