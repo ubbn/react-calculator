@@ -200,7 +200,7 @@ class BootstrapCalculator extends React.Component {
               <CButton label={8} onClick={()=> this.inputDigit(8)}/>
               <CButton label={9} onClick={()=> this.inputDigit(9)}/>
               <CButton label={0} onClick={()=> this.inputDigit(0)}/>
-              <CButton label={'.'} onClick={()=> this.inputDot()} />
+              <CButton label={'&middot;'} onClick={()=> this.inputDot()} />
               <CButton label={'%'} onClick={()=> this.inputPercent()}/>
             </div>
             <div className="col-xs-4 p-r-0">

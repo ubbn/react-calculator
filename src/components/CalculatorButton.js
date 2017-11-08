@@ -1,6 +1,10 @@
 import React from 'react';
 import { Button } from 'react-bootstrap'
 
+function createMarkup(string) {
+  return {__html: string};
+}
+
 const CalculatorButton = (props) => {
   let { style, size, label, className } = props
   style = !!style ? style : 'secondary'
@@ -13,8 +17,8 @@ const CalculatorButton = (props) => {
       bsSize={size} 
       className={className}
       onClick={props.onClick}
+      dangerouslySetInnerHTML={createMarkup(label)}
     >
-      {label}
     </Button>
   );
 }
