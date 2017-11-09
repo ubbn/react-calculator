@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BootstrapCalculator from './components/BootstrapCalculator';
+import Calculator from './components/Calculator';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <BootstrapCalculator />
+  <Calculator />
   , document.getElementById('root'));
 registerServiceWorker();

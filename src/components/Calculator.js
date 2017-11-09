@@ -1,5 +1,5 @@
 import React from 'react';
-import CButton from './CalculatorButton'
+import CalcButton from './Button'
 import Display from './Display'
 
 const CalculatorOperations = {
@@ -182,32 +182,32 @@ class BootstrapCalculator extends React.Component {
               <Display value={this.state.valueStr}/>
             </div>
             <div className="col-xs-8 p-a-0 m-t-2">
-              <CButton label={'CE'} style={'danger'} onClick={() => this.clear()}/>  
-              <CButton label={'&#8730;'} onClick={()=> this.squareRoot()}>{3}</CButton>
-              <CButton label={'x<sup>2</sup>'} onClick={()=> this.square()}/>
+              <CalcButton label={'CE'} style={'danger'} onClick={() => this.clear()}/>  
+              <CalcButton label={'&#8730;'} onClick={()=> this.squareRoot()}>{3}</CalcButton>
+              <CalcButton label={'x<sup>2</sup>'} onClick={()=> this.square()}/>
             </div>
             <div className="col-xs-4 p-r-0 m-t-2">
-              <CButton label={'÷'} className={'col-xs-12'} onClick={() => this.performOperation('/')}/>
+              <CalcButton label={'÷'} className={'col-xs-12'} onClick={() => this.performOperation('/')}/>
             </div>
             <div className="col-xs-8 p-a-0">
-              <CButton label={1} onClick={()=> this.inputDigit(1)}/>
-              <CButton label={2} onClick={()=> this.inputDigit(2)}/>
-              <CButton label={3} onClick={()=> this.inputDigit(3)}/>
-              <CButton label={4} onClick={()=> this.inputDigit(4)}/>
-              <CButton label={5} onClick={()=> this.inputDigit(5)}/>
-              <CButton label={6} onClick={()=> this.inputDigit(6)}/>
-              <CButton label={7} onClick={()=> this.inputDigit(7)}/>
-              <CButton label={8} onClick={()=> this.inputDigit(8)}/>
-              <CButton label={9} onClick={()=> this.inputDigit(9)}/>
-              <CButton label={0} onClick={()=> this.inputDigit(0)}/>
-              <CButton label={'&middot;'} onClick={()=> this.inputDot()} />
-              <CButton label={'%'} onClick={()=> this.inputPercent()}/>
+              <CalcButton label={1} onClick={()=> this.inputDigit(1)}/>
+              <CalcButton label={2} onClick={()=> this.inputDigit(2)}/>
+              <CalcButton label={3} onClick={()=> this.inputDigit(3)}/>
+              <CalcButton label={4} onClick={()=> this.inputDigit(4)}/>
+              <CalcButton label={5} onClick={()=> this.inputDigit(5)}/>
+              <CalcButton label={6} onClick={()=> this.inputDigit(6)}/>
+              <CalcButton label={7} onClick={()=> this.inputDigit(7)}/>
+              <CalcButton label={8} onClick={()=> this.inputDigit(8)}/>
+              <CalcButton label={9} onClick={()=> this.inputDigit(9)}/>
+              <CalcButton label={0} onClick={()=> this.inputDigit(0)}/>
+              <CalcButton label={'&middot;'} onClick={()=> this.inputDot()} />
+              <CalcButton label={'%'} onClick={()=> this.inputPercent()}/>
             </div>
             <div className="col-xs-4 p-r-0">
-              <CButton label={'*'} className={'col-xs-12'} onClick={() => this.performOperation('*')}/>
-              <CButton label={'-'} className={'col-xs-12'} onClick={() => this.performOperation('-')}/>
-              <CButton label={'+'} className={'col-xs-12'} onClick={() => this.performOperation('+')}/>
-              <CButton label={'='} className={'col-xs-12'} style={'success'} onClick={() => this.performOperation('=')}/>
+              <CalcButton label={'*'} className={'col-xs-12'} onClick={() => this.performOperation('*')}/>
+              <CalcButton label={'-'} className={'col-xs-12'} onClick={() => this.performOperation('-')}/>
+              <CalcButton label={'+'} className={'col-xs-12'} onClick={() => this.performOperation('+')}/>
+              <CalcButton label={'='} className={'col-xs-12'} style={'success'} onClick={() => this.performOperation('=')}/>
             </div>
           </div>
         </div>

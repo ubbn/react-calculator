@@ -5,7 +5,7 @@ function createMarkup(string) {
   return {__html: string};
 }
 
-const CalculatorButton = (props) => {
+const CalcButton = (props) => {
   let { style, size, label, className } = props
   style = !!style ? style : 'secondary'
   size = !!size ? size : 'large'
@@ -23,4 +23,4 @@ const CalculatorButton = (props) => {
   );
 }
 
-export default CalculatorButton;
+export default CalcButton;
