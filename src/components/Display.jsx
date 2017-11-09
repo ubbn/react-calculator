@@ -2,7 +2,7 @@ import React from 'react'
 
 class Display extends React.Component {
   render() {
-    const { value, ...props } = this.props
+    const { value } = this.props
 
     const language = navigator.language || 'en-US'
     let formattedValue = parseFloat(value).toLocaleString(language, {
