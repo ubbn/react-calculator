@@ -7,7 +7,7 @@ class Display extends React.Component {
     const language = navigator.language || 'en-US'
     let formattedValue = parseFloat(value).toLocaleString(language, {
       useGrouping: true,
-      maximumFractionDigits: 6
+      maximumFractionDigits: 10
     })
 
     const match = value.match(/\.\d*?(0*)$/)
@@ -16,7 +16,11 @@ class Display extends React.Component {
       formattedValue += (/[1-9]/).test(match[0]) ? match[1] : match[0]
 
     return (
-      <input className="form-control text-xs-right" disabled type="text" value={formattedValue}/>
+      <input 
+        className="form-control text-xs-right" 
+        style={{fontSize: 30}}
+        type="text" disabled 
+        value={formattedValue}/>
     )
   }
 }

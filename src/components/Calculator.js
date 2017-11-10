@@ -1,4 +1,5 @@
 import React from 'react';
+
 import CalcButton from './Button'
 import Display from './Display'
 
@@ -26,26 +27,12 @@ class BootstrapCalculator extends React.Component {
     })
   }
 
-  clearDisplayValue() {
-    this.setState({
-      valueStr: '0'
-    })
-  }
-
   // delete a last char
   clearLastChar() {
     const { valueStr } = this.state
 
     this.setState({
       valueStr: valueStr.substring(0, valueStr.length - 1) || '0'
-    })
-  }
-
-  toggleSign() {
-    const { valueStr } = this.state
-
-    this.setState({
-      valueStr: valueStr.charAt(0) === '-' ? valueStr.substr(1) : '-' + valueStr
     })
   }
 
@@ -57,7 +44,8 @@ class BootstrapCalculator extends React.Component {
       return
 
     this.setState({
-      valueStr: String(value / 100)
+      valueStr: String(value / 100),
+      waitingForOperand: true
     })
   }
 
@@ -144,7 +132,8 @@ class BootstrapCalculator extends React.Component {
   handleKeyDown = (event) => {
     let { key } = event
 
-    if (event.ctrlKey || event.metaKey)
+    let fnKeys = event.keyCode > 111 && event.keyCode < 124
+    if (event.ctrlKey || event.metaKey || fnKeys)
       return
 
     if (key === 'Enter')
@@ -163,12 +152,7 @@ class BootstrapCalculator extends React.Component {
       this.clearLastChar()
     } else if (key === 'Clear') {
       event.preventDefault()
-
-      if (this.state.valueStr !== '0') {
-        this.clearDisplayValue()
-      } else {
-        this.clear()
-      }
+      this.clear()
     }
   }    
 
@@ -190,16 +174,9 @@ class BootstrapCalculator extends React.Component {
               <CalcButton label={'÷'} className={'col-xs-12'} onClick={() => this.performOperation('/')}/>
             </div>
             <div className="col-xs-8 p-a-0">
-              <CalcButton label={1} onClick={()=> this.inputDigit(1)}/>
-              <CalcButton label={2} onClick={()=> this.inputDigit(2)}/>
-              <CalcButton label={3} onClick={()=> this.inputDigit(3)}/>
-              <CalcButton label={4} onClick={()=> this.inputDigit(4)}/>
-              <CalcButton label={5} onClick={()=> this.inputDigit(5)}/>
-              <CalcButton label={6} onClick={()=> this.inputDigit(6)}/>
-              <CalcButton label={7} onClick={()=> this.inputDigit(7)}/>
-              <CalcButton label={8} onClick={()=> this.inputDigit(8)}/>
-              <CalcButton label={9} onClick={()=> this.inputDigit(9)}/>
-              <CalcButton label={0} onClick={()=> this.inputDigit(0)}/>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(d => 
+                <CalcButton label={d} onClick={()=> this.inputDigit(d)}/>
+              )}
               <CalcButton label={'&middot;'} onClick={()=> this.inputDot()} />
               <CalcButton label={'%'} onClick={()=> this.inputPercent()}/>
             </div>
